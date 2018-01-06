@@ -3,22 +3,24 @@ package com.alarm.darya.alarmexample;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
-import android.widget.Toast;
+import android.os.Bundle;
 
 
 public class AlarmReceiver extends BroadcastReceiver {
+    static Intent alarmScreenTask;
+
     @Override
     public void onReceive(Context context, Intent intent) {
-        boolean isOn = intent.getBooleanExtra("isOn", false);
-        Intent serviceIntent = new Intent(context, RingtonPlayingService.class);
-        if (isOn) {
-            context.startService(serviceIntent);
-            Toast.makeText(context, "Wake up!!", Toast.LENGTH_SHORT).show();
-        } else {
-            context.stopService(serviceIntent);
-            Toast.makeText(context, "Alarm cancelled!!", Toast.LENGTH_SHORT).show();
-        }
+        Bundle bundle = intent.getExtras();
+        Alarm runningAlarm = (Alarm)bundle.getSerializable("alarm");
+
+        if (alarmScreenTask == null)
+            alarmScreenTask = new Intent(context, AlarmScreenActivity.class);
+
+        bundle = new Bundle();
+        bundle.putSerializable("alarm", runningAlarm);
+        alarmScreenTask.putExtras(bundle);
+        context.startActivity(alarmScreenTask);
     }
 
 
