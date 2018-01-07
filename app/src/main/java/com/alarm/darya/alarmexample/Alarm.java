@@ -11,5 +11,5 @@ public class Alarm implements Serializable {
     public int timeHour;
     public int timeMinute;
     public boolean enable;
-    public Uri alarmTone;
+    //public Uri alarmTone;
 }

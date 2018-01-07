@@ -3,11 +3,11 @@ package com.alarm.darya.alarmexample;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.os.Bundle;
 import android.os.SystemClock;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
 
 import static android.content.Context.ALARM_SERVICE;
 
@@ -33,11 +33,6 @@ public class AlarmControlManager {
     void setOnAlarm(int index) {
         AlarmEnvironment alarmEnv = alarms.get(index);
         Alarm alarm = alarmEnv.entityAlarm;
-
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("alarm", alarm);
-        alarmEnv.alarmIntent.putExtras(bundle);
-
         PendingIntent alarmPending = alarmEnv.alarmPendingIntent;
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, getSchedule(alarm), alarmPending);
     }
