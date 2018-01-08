@@ -80,17 +80,6 @@ public class MainActivity extends AppCompatActivity {
         alarmControlManager.createAlarm(alarm);
         alarmControlManager.setOnAlarm(++index);
 
-        /*Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, selectedHour);
-        calendar.set(Calendar.MINUTE, selectedMinute);
-        calendar.set(Calendar.SECOND, 00);
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.getInstance().get(Calendar.DAY_OF_WEEK));*/
-
-        /*alarmIntent.putExtra("isOn", true);
-        alarmPendingIntent = PendingIntent
-                .getBroadcast(MainActivity.this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        long timeInMillis = calendar.getTimeInMillis();
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeInMillis, alarmPendingIntent);*/
         updateStatus("Alarm on!");
     }
 
@@ -98,9 +87,6 @@ public class MainActivity extends AppCompatActivity {
     void onBtnEndClicked(View button) {
         updateStatus("Alarm off!");
         alarmControlManager.cancelAlarm(index);
-        //alarmManager.cancel(alarmPendingIntent);
-        //alarmIntent.putExtra("isOn", false);
-        //sendBroadcast(alarmIntent);
     }
 
     void updateStatus(String status) {

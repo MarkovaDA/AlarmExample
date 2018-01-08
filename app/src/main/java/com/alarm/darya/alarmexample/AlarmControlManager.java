@@ -57,6 +57,7 @@ public class AlarmControlManager {
 
     private Long getSchedule(Alarm alarm) {
         Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.set(Calendar.HOUR_OF_DAY, alarm.timeHour);
         calendar.set(Calendar.MINUTE, alarm.timeMinute);
         calendar.set(Calendar.SECOND, 00);
